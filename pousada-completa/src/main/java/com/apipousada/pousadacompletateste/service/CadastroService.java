@@ -1,6 +1,7 @@
 package com.apipousada.pousadacompletateste.service;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,6 +19,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class CadastroService {
+
+List<CadastroModel> cadastros = new ArrayList<>(); // declaração da variável
+
     
     @Autowired
     private CadastroRepository cadastroRepository;
@@ -55,7 +59,7 @@ public class CadastroService {
         // Verificar se o login já está em uso
         Optional<CadastroModel> loginExistente = cadastroRepository.findByLogin(cadastro.getLogin());
         if (loginExistente.isPresent()) {
-        throw new InvalidParameterException("O nome de usuário já está em uso.");
+        throw new InvalidParameterException("O login já está em uso.");
         }
 
 
@@ -130,4 +134,39 @@ public class CadastroService {
         return token;
 
     }
+
+    /*public CadastroModel obterPorId(Long id) {
+        return null;
+    }*/
+    public CadastroModel obterPorId(Long id) {
+        Optional<CadastroModel> usuarioOptional = cadastroRepository.findById(id);
+        if(usuarioOptional.isPresent()) {
+            return usuarioOptional.get();
+        } else {
+            throw new RuntimeException("Usuário não encontrado com ID: " + id);
+        }
     }
+
+    /*public CadastroModel buscarPorLogin(String login) {
+        return null;
+    }*/
+    /*public CadastroModel buscarPorLogin(String login) {
+        for (CadastroModel cadastro : cadastros) {
+            if (cadastro.getLogin().equals(login)) {
+                return cadastro;
+            }
+        }
+        return null; // retorna null se o login não for encontrado
+    }*/
+    public CadastroModel buscarPorLogin(String login) {
+        Optional<CadastroModel> usuarioOptional = cadastroRepository.findByLogin(login);
+        if(usuarioOptional.isPresent()) {
+            return usuarioOptional.get();
+        } else {
+            throw new RuntimeException("Usuário não encontrado com login: " + login);
+        }
+    }
+
+}
+
+

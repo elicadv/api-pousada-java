@@ -32,6 +32,16 @@ public class CadastroController {
         return cadastroService.listarPessoas();
     }
 
+    @GetMapping("/{login}")
+    public CadastroModel buscarPorLogin(@PathVariable String login) {
+    return cadastroService.buscarPorLogin(login);
+    }
+
+    @GetMapping("/usuario/{id}")
+    public CadastroModel obterPorId(@PathVariable Long id) {
+    return cadastroService.obterPorId(id);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody CadastroModel loginRequest) {
     try {
