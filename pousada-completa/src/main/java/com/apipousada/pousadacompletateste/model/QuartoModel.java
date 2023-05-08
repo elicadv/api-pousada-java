@@ -27,6 +27,8 @@ public class QuartoModel {
     @Column(nullable = false)
     private int quantidadeDisponivel;
 
+    @Column(nullable = false)
+    private String imagem; // Nova coluna para a imagem em formato Base64
 
     // construtor padrão
     public QuartoModel() {}
@@ -37,6 +39,7 @@ public class QuartoModel {
         this.preco = preco;
         this.descricaoDetalhada = descricaoDetalhada;
         this.quantidadeDisponivel = quantidadeDisponivel;
+        this.imagem = imagem;
     }
 
     // getters e setters
@@ -79,5 +82,12 @@ public class QuartoModel {
     public void setQuantidadeDisponivel(int quantidadeDisponivel) {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
-}
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+}

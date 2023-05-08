@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.apipousada.pousadacompletateste.model.QuartoModel;
 import com.apipousada.pousadacompletateste.service.QuartoService;
 
+
 @RestController
 @RequestMapping("/pousada/quarto")
 public class QuartoController {
@@ -28,26 +29,31 @@ public class QuartoController {
     public List<QuartoModel> listar() {
         return quartoService.listarQuarto();
     }
-    
+
     @PostMapping
-    public QuartoModel criar(@RequestBody QuartoModel cadastroQuarto) {
-        return quartoService.salvar(cadastroQuarto);
+    public ResponseEntity<QuartoModel> criar(@RequestBody QuartoModel cadastroQuarto) {
+        QuartoModel novoQuarto = quartoService.salvar(cadastroQuarto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoQuarto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteQuarto(@PathVariable Long id) {
-    boolean isDeleted = quartoService.deleteQuarto(id);
+        boolean isDeleted = quartoService.deleteQuarto(id);
 
-    if (isDeleted) {
-        return ResponseEntity.ok("Quarto deletado com sucesso.");
-    } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar quarto.");
-    }
-
+        if (isDeleted) {
+            return ResponseEntity.ok("Quarto deletado com sucesso.");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar quarto.");
+        }
     }
 
     @PutMapping("/{id}")
-    public QuartoModel updateQuarto(@PathVariable Long id, @RequestBody QuartoModel quartoModel) {
-    return quartoService.updateQuarto(id, quartoModel);
-}
+    public ResponseEntity<QuartoModel> updateQuarto(@PathVariable Long id, @RequestBody QuartoModel quartoModel) {
+        QuartoModel quartoAtualizado = quartoService.updateQuarto(id, quartoModel);
+        if (quartoAtualizado != null) {
+            return ResponseEntity.ok(quartoAtualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
