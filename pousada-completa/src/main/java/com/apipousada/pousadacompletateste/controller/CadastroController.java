@@ -52,12 +52,6 @@ public class CadastroController {
     }
     }
 
-
-    /*@PostMapping
-    public CadastroModel criar(@RequestBody CadastroModel cadastro) {
-        return cadastroService.salvar(cadastro);
-    }*/
-
     @PostMapping("/cadastro")
     public ResponseEntity<Object> criar(@RequestBody CadastroModel cadastro) {
         try {
@@ -67,11 +61,6 @@ public class CadastroController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    /*@DeleteMapping("/{id}")
-    public void deleteCadastro(@PathVariable Long id) {
-        cadastroService.deleteCadastro(id);
-    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCadastro(@PathVariable Long id) {

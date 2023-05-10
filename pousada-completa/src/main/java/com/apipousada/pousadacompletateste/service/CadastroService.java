@@ -1,7 +1,7 @@
 package com.apipousada.pousadacompletateste.service;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,15 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class CadastroService {
 
-List<CadastroModel> cadastros = new ArrayList<>(); // declaração da variável
-
-    
     @Autowired
     private CadastroRepository cadastroRepository;
-
-    /*public CadastroModel salvar(CadastroModel cadastro) {
-        return cadastroRepository.save(cadastro);
-    }*/
     
      public CadastroModel salvar(CadastroModel cadastro) throws InvalidParameterException {
 
@@ -81,15 +74,6 @@ List<CadastroModel> cadastros = new ArrayList<>(); // declaração da variável
         return cadastroRepository.findAll();
     }
 
-    public CadastroModel getCadastroById(Long id) {
-        return null;
-    }
-
-    /*public boolean deleteCadastro(Long id) {
-        cadastroRepository.deleteById(id);
-    }*/
-
-
     public boolean deleteCadastro(Long id) {
         Optional<CadastroModel> cadastroOptional = cadastroRepository.findById(id);
     
@@ -134,10 +118,6 @@ List<CadastroModel> cadastros = new ArrayList<>(); // declaração da variável
         return token;
 
     }
-
-    /*public CadastroModel obterPorId(Long id) {
-        return null;
-    }*/
     public CadastroModel obterPorId(Long id) {
         Optional<CadastroModel> usuarioOptional = cadastroRepository.findById(id);
         if(usuarioOptional.isPresent()) {
@@ -147,17 +127,6 @@ List<CadastroModel> cadastros = new ArrayList<>(); // declaração da variável
         }
     }
 
-    /*public CadastroModel buscarPorLogin(String login) {
-        return null;
-    }*/
-    /*public CadastroModel buscarPorLogin(String login) {
-        for (CadastroModel cadastro : cadastros) {
-            if (cadastro.getLogin().equals(login)) {
-                return cadastro;
-            }
-        }
-        return null; // retorna null se o login não for encontrado
-    }*/
     public CadastroModel buscarPorLogin(String login) {
         Optional<CadastroModel> usuarioOptional = cadastroRepository.findByLogin(login);
         if(usuarioOptional.isPresent()) {
