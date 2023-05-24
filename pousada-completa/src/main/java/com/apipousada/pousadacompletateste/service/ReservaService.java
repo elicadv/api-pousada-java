@@ -47,5 +47,10 @@ public class ReservaService {
     public void deleteReserva(Long id) {
         reservaRepository.deleteById(id);
     }
+
+    public List<ReservaModel> getReservasByPessoaId(Long pessoaId) {
+        return reservaRepository.findByPessoaId(pessoaId);
+    }
+    
 }
 

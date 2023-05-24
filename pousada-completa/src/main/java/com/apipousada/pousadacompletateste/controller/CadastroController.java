@@ -4,7 +4,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+//import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,7 +62,7 @@ public class CadastroController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/cadastro/{id}")
     public ResponseEntity<String> deleteCadastro(@PathVariable Long id) {
     boolean isDeleted = cadastroService.deleteCadastro(id);
 
@@ -71,9 +71,16 @@ public class CadastroController {
     } else {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar cadastro.");
     }
+}*/
+
+   @DeleteMapping("/cadastro/{id}")
+   public ResponseEntity<Object> deletar(@PathVariable Long id) {
+    cadastroService.deletarCadastro(id);
+    return ResponseEntity.ok().build();
 }
 
-   @PutMapping("/{id}")
+
+   @PutMapping("/cadastro/{id}")
     public CadastroModel updateCadastro(@PathVariable Long id, @RequestBody CadastroModel cadastroModel) {
     return cadastroService.updateCadastro(id, cadastroModel);
 }

@@ -11,7 +11,7 @@ import com.apipousada.pousadacompletateste.repositories.QuartoRepository;
 
 
 @Service
-public class QuartoService {
+public class QuartoService { 
 
     @Autowired
     private QuartoRepository quartoRepository;
@@ -20,6 +20,24 @@ public class QuartoService {
         return quartoRepository.findAll();
     }
 
+    public QuartoModel obterQuartoPorId(Long id) {
+        Optional<QuartoModel> quarto = quartoRepository.findById(id);
+        return quarto.orElse(null);
+    }
+
+    /*public List<QuartoModel> buscarPorDescricao(String descricao) {
+        return quartoRepository.findByDescricaoIgnoreCase(descricao);
+    }*/
+
+    public QuartoModel buscarPorDescricao(String descricao) {
+        List<QuartoModel> quartos = quartoRepository.findByDescricaoIgnoreCase(descricao);
+        if (quartos.isEmpty()) {
+            return null;
+        } else {
+            return quartos.get(0);
+        }
+    }
+    
     public QuartoModel salvar(QuartoModel cadastroQuarto) {
         return quartoRepository.save(cadastroQuarto);
     }
@@ -49,4 +67,6 @@ public class QuartoService {
             return null;
         }
     }
+
+   
 }

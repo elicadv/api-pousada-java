@@ -74,7 +74,7 @@ public class CadastroService {
         return cadastroRepository.findAll();
     }
 
-    public boolean deleteCadastro(Long id) {
+    /*public boolean deleteCadastro(Long id) {
         Optional<CadastroModel> cadastroOptional = cadastroRepository.findById(id);
     
         if (cadastroOptional.isPresent()) {
@@ -83,7 +83,17 @@ public class CadastroService {
         } else {
             return false;
         }
+    }*/
+
+    public void deletarCadastro(Long id) {
+        Optional<CadastroModel> cadastroOptional = cadastroRepository.findById(id);
+        if (cadastroOptional.isPresent()) {
+            cadastroRepository.delete(cadastroOptional.get());
+        } else {
+            throw new RuntimeException("Cadastro não encontrado com ID: " + id);
+        }
     }
+    
 
     public CadastroModel updateCadastro(Long id, CadastroModel cadastroModel) {
         Optional<CadastroModel> optionalCadastro = cadastroRepository.findById(id);
