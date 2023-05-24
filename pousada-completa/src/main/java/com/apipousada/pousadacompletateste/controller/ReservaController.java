@@ -51,12 +51,6 @@ public class ReservaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     }
-
-    /*@PostMapping
-    public ResponseEntity<ReservaModel> createReserva(@RequestBody ReservaModel reserva) {
-        ReservaModel createdReserva = reservaService.createReserva(reserva);
-        return new ResponseEntity<>(createdReserva, HttpStatus.CREATED);
-    }*/
     
     @PostMapping
     public ResponseEntity<?> createReserva(@Validated @RequestBody ReservaModel reserva, BindingResult result) {

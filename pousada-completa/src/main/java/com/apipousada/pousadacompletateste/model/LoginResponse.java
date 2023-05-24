@@ -4,11 +4,9 @@ public class LoginResponse {
     
     private String token;
     
-    //contructor
     public LoginResponse(String token) {
         this.token = token;
     }
-    //getter e setter
     public String getToken() {
         return token;
     }

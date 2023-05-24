@@ -12,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-//import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -23,14 +22,6 @@ public class ReservaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    /*@NotNull
-    @Column(nullable = false)
-    private String dataInicio;
-    
-    @NotNull
-    @Column(nullable = false)
-    private String dataFim;*/
 
     @NotBlank(message = "A data de início é obrigatória")
     @Column(nullable = false)
@@ -50,10 +41,8 @@ public class ReservaModel {
     @JsonProperty("quarto")
     private QuartoModel quarto;
 
-    // construtor padrão
     public ReservaModel() {}
 
-    // construtor com parâmetros
     public ReservaModel(String dataInicio, String dataFim, CadastroModel pessoa, QuartoModel quarto) {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -61,8 +50,6 @@ public class ReservaModel {
         this.quarto = quarto;
     }
     
-
-    // getters e setters
     public Long getId() {
         return id;
     }

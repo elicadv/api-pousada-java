@@ -33,11 +33,8 @@ public class CadastroModel {
     @Column(nullable = false)
     private String senha;
 
-
-    // construtor padrão
     public CadastroModel() {}
 
-    // construtor com parâmetros
     public CadastroModel(String nome, String cpf, String telefone, String endereco, String login, String senha) {
         this.nome = nome;
         this.cpf = cpf;
@@ -47,7 +44,6 @@ public class CadastroModel {
         this.senha = senha;
     }
 
-    // getters e setters
     public Long getId() {
         return id;
     }

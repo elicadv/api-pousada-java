@@ -11,8 +11,6 @@ import com.apipousada.pousadacompletateste.model.QuartoModel;
 @Repository
 public interface QuartoRepository extends JpaRepository <QuartoModel, Long>{
 
-    //List<QuartoModel> findByDescricao(String descricao);
-
     @Query("SELECT q FROM QuartoModel q WHERE LOWER(q.descricao) = LOWER(:descricao)")
     List<QuartoModel> findByDescricaoIgnoreCase(@Param("descricao") String descricao);
 }   

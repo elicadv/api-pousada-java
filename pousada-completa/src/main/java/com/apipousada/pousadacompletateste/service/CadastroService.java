@@ -1,7 +1,6 @@
 package com.apipousada.pousadacompletateste.service;
 
 import java.security.InvalidParameterException;
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -74,17 +73,6 @@ public class CadastroService {
         return cadastroRepository.findAll();
     }
 
-    /*public boolean deleteCadastro(Long id) {
-        Optional<CadastroModel> cadastroOptional = cadastroRepository.findById(id);
-    
-        if (cadastroOptional.isPresent()) {
-            cadastroRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
-    }*/
-
     public void deletarCadastro(Long id) {
         Optional<CadastroModel> cadastroOptional = cadastroRepository.findById(id);
         if (cadastroOptional.isPresent()) {
@@ -123,7 +111,8 @@ public class CadastroService {
         if (!encoder.matches(password, cadastro.get().getSenha())) {
             throw new InvalidLoginException("Login ou senha inválidos");
         }
-        // gera um token de autenticação (exemplo)
+        
+        // gera um token de autenticação
         String token = UUID.randomUUID().toString();
         return token;
 

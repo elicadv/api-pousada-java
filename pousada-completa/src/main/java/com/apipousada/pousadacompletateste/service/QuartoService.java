@@ -25,10 +25,6 @@ public class QuartoService {
         return quarto.orElse(null);
     }
 
-    /*public List<QuartoModel> buscarPorDescricao(String descricao) {
-        return quartoRepository.findByDescricaoIgnoreCase(descricao);
-    }*/
-
     public QuartoModel buscarPorDescricao(String descricao) {
         List<QuartoModel> quartos = quartoRepository.findByDescricaoIgnoreCase(descricao);
         if (quartos.isEmpty()) {

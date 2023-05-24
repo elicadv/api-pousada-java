@@ -29,26 +29,11 @@ public class QuartoController {
     public List<QuartoModel> listar() {
         return quartoService.listarQuarto();
     }
-    
-    /*@GetMapping("/id/{id}")    
-    public QuartoModel obterQuartoPorId(@PathVariable Long id) {
-    return quartoService.obterQuartoPorId(id);
-    }*/
 
     @GetMapping("/{id}")    
     public QuartoModel obterQuartoPorId(@PathVariable Long id) {
     return quartoService.obterQuartoPorId(id);
     }
-
-    /*@GetMapping("/descricao/{descricao}")
-     public ResponseEntity<List<QuartoModel>> buscarPorDescricao(@PathVariable String descricao) {
-    List<QuartoModel> quartos = quartoService.buscarPorDescricao(descricao);
-    if (quartos.isEmpty()) {
-        return ResponseEntity.notFound().build();
-    } else {
-        return ResponseEntity.ok(quartos);
-    }
-   }*/
 
     @GetMapping("/descricao/{descricao}")
     public ResponseEntity<QuartoModel> buscarPorDescricao(@PathVariable String descricao) {

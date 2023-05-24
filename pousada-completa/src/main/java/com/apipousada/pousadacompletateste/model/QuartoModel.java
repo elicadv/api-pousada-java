@@ -28,12 +28,10 @@ public class QuartoModel {
     private int quantidadeDisponivel;
 
     @Column(nullable = false)
-    private String imagem; // Nova coluna para a imagem em formato Base64
+    private String imagem; 
 
-    // construtor padrão
     public QuartoModel() {}
 
-    // construtor com parâmetros
     public QuartoModel(String descricao, double preco, String descricaoDetalhada, int quantidadeDisponivel, String imagem) {
         this.descricao = descricao;
         this.preco = preco;
@@ -42,7 +40,6 @@ public class QuartoModel {
         this.imagem = imagem;
     }
 
-    // getters e setters
     public Long getId() {
         return id;
     }
